@@ -18,4 +18,7 @@ public class Dipendente {
     private String cognome;
 
     private String email;
+
+    @OneToOne
+    Avatar avatar;
 }

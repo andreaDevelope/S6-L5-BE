@@ -21,8 +21,23 @@ public class DipendenteController {
         return ResponseEntity.ok(ds.findAll());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Dipendente> getDipedeteById(@PathVariable Long id){
+        return ResponseEntity.ok(ds.findById(id));
+    }
+
     @PostMapping
     public ResponseEntity<Dipendente> saveDipendente(@RequestBody DipendenteRequest newD){
         return ResponseEntity.status(HttpStatus.CREATED).body(ds.save(newD));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Dipendente> updateDipendente(@RequestBody DipendenteRequest newD, @PathVariable Long id){
+        return ResponseEntity.ok(ds.update(newD, id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Dipendente> deleteDipendente(@PathVariable Long id){
+        return ResponseEntity.ok(ds.delete(id));
     }
 }

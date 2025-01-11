@@ -18,10 +18,26 @@ public class DipendenteServ {
         return dr.findAll();
     }
 
+    public Dipendente findById(Long id){
+        return dr.findById(id).get();
+    }
+
     public Dipendente save(DipendenteRequest newD){
         Dipendente d = new Dipendente();
         BeanUtils.copyProperties(newD, d);
 
         return dr.save(d);
+    }
+
+    public Dipendente update (DipendenteRequest newD, Long id){
+        Dipendente d = dr.findById(id).get();
+        BeanUtils.copyProperties(newD, d);
+        return dr.save(d);
+    }
+
+    public Dipendente delete (Long id){
+        Dipendente d = dr.findById(id).get();
+        dr.delete(d);
+        return d;
     }
 }

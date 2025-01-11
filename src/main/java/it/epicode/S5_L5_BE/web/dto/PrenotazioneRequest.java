@@ -10,11 +10,7 @@ import java.time.LocalDate;
 @Data
 public class PrenotazioneRequest {
     private LocalDate dataPrenotazione;
-
     private String note;
-
-    private Dipendente dipendente;
-
-    private Viaggio viaggio;
-
+    private Long dipendenteId;
+    private Long viaggioId;
 }

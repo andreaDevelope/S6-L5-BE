@@ -13,7 +13,8 @@ import java.util.List;
 @Table(name = "viaggi")
 public class Viaggio {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
 
     private String destinazione;
 

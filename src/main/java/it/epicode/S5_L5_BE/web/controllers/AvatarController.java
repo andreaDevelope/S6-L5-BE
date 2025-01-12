@@ -11,8 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/cloudinary")
-public class UploadController {
+@RequestMapping("/api/avatars")
+public class AvatarController {
 
     @Autowired
     private CloudinaryServ cloudinaryService;

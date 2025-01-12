@@ -19,6 +19,4 @@ public class Dipendente {
 
     private String email;
 
-    @OneToOne
-    Avatar avatar;
 }

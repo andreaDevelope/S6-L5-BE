@@ -21,11 +21,8 @@ public class AvatarServ {
         Dipendente dipendente = dipendenteRepo.findById(dipendenteId)
                 .orElseThrow(() -> new EntityNotFoundException("Dipendente non trovato con ID: " + dipendenteId));
 
-        Avatar savedAvatar = avatarRepo.save(avatar);
+        avatar.setDipendente(dipendente);
 
-        dipendente.setAvatar(savedAvatar);
-        dipendenteRepo.save(dipendente);
-
-        return savedAvatar;
+        return avatarRepo.save(avatar);
     }
 }

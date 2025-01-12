@@ -10,14 +10,17 @@ import it.epicode.S5_L5_BE.exceptions.AlreadyExistsException;
 import it.epicode.S5_L5_BE.exceptions.UploadException;
 import it.epicode.S5_L5_BE.web.dto.PrenotazioneRequest;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
 @Service
+@Validated
 public class PrenotazioneServ {
 
     @Autowired
@@ -33,7 +36,7 @@ public class PrenotazioneServ {
         return pr.findAll();
     }
 
-    public Prenotazione save(PrenotazioneRequest newP) {
+    public Prenotazione save(@Valid PrenotazioneRequest newP) {
         Prenotazione p = new Prenotazione();
 
         Dipendente dipendente = dipendenteRepo.findById(newP.getDipendenteId())

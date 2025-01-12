@@ -6,6 +6,7 @@ import it.epicode.S5_L5_BE.exceptions.AlreadyExistsException;
 import it.epicode.S5_L5_BE.exceptions.UploadException;
 import it.epicode.S5_L5_BE.web.dto.DipendenteRequest;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -33,7 +34,7 @@ public class DipendenteServ {
                 new EntityNotFoundException("Dipendente con ID " + id + " non trovato!"));
     }
 
-    public Dipendente save(DipendenteRequest newD) {
+    public Dipendente save(@Valid DipendenteRequest newD) {
         Dipendente d = new Dipendente();
         BeanUtils.copyProperties(newD, d);
 
@@ -46,7 +47,7 @@ public class DipendenteServ {
         }
     }
 
-    public Dipendente update(DipendenteRequest newD, Long id) {
+    public Dipendente update(@Valid DipendenteRequest newD, Long id) {
         if (!dr.existsById(id)) {
             throw new EntityNotFoundException("Dipendente con ID " + id + " non trovato!");
         }

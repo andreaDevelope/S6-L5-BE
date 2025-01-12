@@ -9,6 +9,7 @@ import it.epicode.S5_L5_BE.exceptions.UploadException;
 import it.epicode.S5_L5_BE.web.dto.ViaggioRequest;
 import it.epicode.S5_L5_BE.web.dto.ViaggioStatoRequest;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -19,7 +20,7 @@ import java.util.List;
 
 @Service
 @Validated
-public class ViaggioServ {
+    public class ViaggioServ {
     @Autowired
     ViaggioRepo vr;
 
@@ -35,7 +36,7 @@ public class ViaggioServ {
                 new EntityNotFoundException("Viaggio con ID " + id + " non trovato!"));
     }
 
-    public Viaggio saveViaggio(ViaggioRequest newV) {
+    public Viaggio saveViaggio(@Valid ViaggioRequest newV) {
         Viaggio v = new Viaggio();
         BeanUtils.copyProperties(newV, v);
 
@@ -50,7 +51,7 @@ public class ViaggioServ {
         }
     }
 
-    public Viaggio update(ViaggioRequest newV, Long id) {
+    public Viaggio update(@Valid ViaggioRequest newV, Long id) {
         if (!vr.existsById(id)) {
             throw new EntityNotFoundException("Viaggio con ID " + id + " non trovato!");
         }
@@ -69,7 +70,7 @@ public class ViaggioServ {
         }
     }
 
-    public Viaggio updateStato(Long id, ViaggioStatoRequest newStato) {
+    public Viaggio updateStato(Long id, @Valid ViaggioStatoRequest newStato) {
         if (!vr.existsById(id)) {
             throw new EntityNotFoundException("Viaggio con ID " + id + " non trovato!");
         }
